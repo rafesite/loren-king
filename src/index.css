@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #080808;
+    color: #F5F0E8;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #080808; }
+  ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 2px; }
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes colorCycle {
+  0%, 100% { color: #ffffff; }
+  50% { color: #C9A84C; }
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes heroEyebrow {
+  0%   { opacity: 0; letter-spacing: 0.1em; }
+  100% { opacity: 0.8; letter-spacing: 0.3em; }
+}
+
+@keyframes heroName {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ─── Hero name color cycle ─── */
+.animate-color-cycle {
+  animation: colorCycle 3s ease-in-out infinite;
+}
+
+/* ─── Marquee ─── */
+.animate-marquee {
+  display: flex;
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+.reveal-fade.visible {
+  opacity: 1;
+}
+
+/* Stagger children */
+.stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
+.stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
+.stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
+.stagger > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.stagger > .reveal:nth-child(6) { transition-delay: 0.40s; }
+
+/* ─── Card hover glow ─── */
+.card-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid rgba(201, 168, 76, 0.12);
+}
+.card-hover:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 24px rgba(201, 168, 76, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ─── Gold underline on nav links ─── */
+.nav-link {
+  position: relative;
+  color: #888880;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C9A84C;
+  transition: width 0.25s ease;
+}
+.nav-link:hover { color: #C9A84C; }
+.nav-link:hover::after { width: 100%; }
+
+/* ─── CTA button ─── */
+.btn-gold-outline {
+  border: 1px solid #C9A84C;
+  color: #C9A84C;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  background: transparent;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+.btn-gold-outline:hover {
+  background: #C9A84C;
+  color: #080808;
+  transform: scale(1.02);
+}
+
+.btn-gold-solid {
+  background: #C9A84C;
+  color: #080808;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 0;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+}
+.btn-gold-solid:hover {
+  opacity: 0.88;
+  transform: scale(1.02);
+}
+
+/* ─── Gold divider ─── */
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: #C9A84C;
+  opacity: 0.6;
+}
+
+/* ─── Section label ─── */
+.section-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  opacity: 0.75;
+}
+
+/* ─── Hero name ─── */
+.hero-name {
+  font-size: clamp(90px, 15vw, 175px);
+  white-space: nowrap; /* single line on desktop */
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 767px) {
+  /* Hero eyebrow — hidden on mobile */
+  .hero-eyebrow {
+    display: none !important;
+  }
+
+  /* Hero: stacked LOREN / KING with full-width photo */
+  .hero-name {
+    font-size: 25vw;
+    white-space: normal; /* wraps to LOREN / KING */
+    line-height: 0.9;
+    margin-top: 70px;
+  }
+  .hero-name-container {
+    top: 0 !important;
+  }
+  .hero-photo-container {
+    width: 100% !important;
+    height: 68vh !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  .hero-tagline {
+    display: none !important;
+  }
+  .hero-side-label {
+    display: none !important;
+  }
+  .hero-cta-buttons {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    align-items: center !important;
+    white-space: nowrap;
+  }
+
+  /* Schedule event rows */
+  .schedule-event-row {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 16px 20px !important;
+  }
+  .schedule-badge {
+    justify-self: start;
+  }
+
+  /* Testimonials featured card */
+  .testimonial-featured-card {
+    padding: 28px 20px !important;
+  }
+
+  /* AuthorityBar stats — 2-column wrap, no vertical dividers */
+  .stat-item {
+    border-right: none !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    min-width: calc(50% - 16px) !important;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  /* Footer */
+  .footer-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .footer-social-col {
+    align-items: flex-start !important;
+  }
+}
+
+/* ─── Noise/grain overlay for nonprofit section ─── */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+.grain-overlay > * {
+  position: relative;
+  z-index: 1;
+}

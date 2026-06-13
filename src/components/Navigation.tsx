@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = scrolled || menuOpen;
+  const linkColor = solid && !menuOpen ? "#1a1a1a" : "#F5F0E8";
+  const ctaColor = solid && !menuOpen ? "#080808" : "#C9A84C";
+  const ctaBorder = solid && !menuOpen ? "#080808" : "#C9A84C";
+  const hamburgerColor = solid && !menuOpen ? "#1a1a1a" : "#C9A84C";
 
   return (
     <>
@@ -9,8 +22,9 @@ export default function Navbar() {
         position: "fixed", top: 0, left: 0, width: "100%",
         padding: "16px 32px", display: "flex", alignItems: "center",
         justifyContent: "space-between", zIndex: 100,
-        background: menuOpen ? "#080808" : "transparent",
-        transition: "background 0.3s"
+        background: menuOpen ? "#080808" : scrolled ? "#FFFDF7" : "transparent",
+        boxShadow: scrolled && !menuOpen ? "0 1px 0 rgba(0,0,0,0.08)" : "none",
+        transition: "background 0.3s, box-shadow 0.3s"
       }}>
         <a href="/" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "18px", fontWeight: 700, color: "#C9A84C", letterSpacing: "0.1em", textDecoration: "none" }}>
           LOREN KING
@@ -19,15 +33,15 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div style={{ display: "flex", gap: "32px" }} className="desktop-nav">
           {["About","Talks","Schedule","Podcast","Nonprofit","Contact"].map(item => (
-            <a key={item} href={`#${item.toLowerCase()}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", letterSpacing: "0.2em", color: "#F5F0E8", textDecoration: "none", textTransform: "uppercase" }}>
+            <a key={item} href={`#${item.toLowerCase()}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", letterSpacing: "0.2em", color: linkColor, textDecoration: "none", textTransform: "uppercase", transition: "color 0.3s" }}>
               {item}
             </a>
           ))}
         </div>
 
-        {/* Desktop CTA + socials */}
+        {/* Desktop CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }} className="desktop-nav">
-          <a href="#contact" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", letterSpacing: "0.18em", color: "#C9A84C", border: "1px solid #C9A84C", padding: "8px 18px", textDecoration: "none", textTransform: "uppercase" }}>
+          <a href="#contact" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", letterSpacing: "0.18em", color: ctaColor, border: `1px solid ${ctaBorder}`, padding: "8px 18px", textDecoration: "none", textTransform: "uppercase", transition: "color 0.3s, border-color 0.3s" }}>
             Book Loren
           </a>
         </div>
@@ -37,9 +51,9 @@ export default function Navbar() {
           background: "none", border: "none", cursor: "pointer",
           display: "none", flexDirection: "column", gap: "5px", padding: "4px"
         }}>
-          <span style={{ display: "block", width: "24px", height: "2px", background: "#C9A84C" }} />
-          <span style={{ display: "block", width: "24px", height: "2px", background: "#C9A84C" }} />
-          <span style={{ display: "block", width: "24px", height: "2px", background: "#C9A84C" }} />
+          <span style={{ display: "block", width: "24px", height: "2px", background: hamburgerColor, transition: "background 0.3s" }} />
+          <span style={{ display: "block", width: "24px", height: "2px", background: hamburgerColor, transition: "background 0.3s" }} />
+          <span style={{ display: "block", width: "24px", height: "2px", background: hamburgerColor, transition: "background 0.3s" }} />
         </button>
       </nav>
 

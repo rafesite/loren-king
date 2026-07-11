@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useInView } from '../hooks/useInView';
 
 export default function About() {
   const { ref, visible } = useInView(0.08);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <section
@@ -41,20 +43,48 @@ export default function About() {
                 zIndex: 0,
               }}
             />
-            <img
-              src="/50401340447_(1).jpg"
-              alt="Loren King — Global Public Speaker"
-              className="img-editorial"
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center top',
-                display: 'block',
-              }}
-            />
+            {/* Image container with crossfade */}
+            <div
+              style={{ position: 'relative', width: '100%', height: '100%', zIndex: 1, cursor: 'pointer' }}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              onClick={() => setHovered((v) => !v)}
+            >
+              {/* Image 1 — default */}
+              <img
+                src="/meet_loren1.jpg"
+                alt="Loren King — Global Public Speaker"
+                className="img-editorial"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  display: 'block',
+                  opacity: 1,
+                }}
+              />
+              {/* Image 2 — hover/tap reveal */}
+              <img
+                src="/meet_loren2.jpg"
+                alt="Loren King"
+                className="img-editorial"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  display: 'block',
+                  opacity: hovered ? 1 : 0,
+                  transition: 'opacity 0.5s ease-in-out',
+                  zIndex: 1,
+                }}
+              />
+            </div>
           </div>
         </div>
 

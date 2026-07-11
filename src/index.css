@@ -261,6 +261,25 @@
   }
 }
 
+/* ─── Editorial image treatment ─── */
+.img-editorial {
+  filter: grayscale(35%) sepia(8%) contrast(0.95);
+  transition: filter 0.4s ease;
+}
+.img-editorial:hover {
+  filter: grayscale(15%) sepia(5%) contrast(1);
+}
+
+/* ─── Card hover for light sections ─── */
+.card-hover-light {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-hover-light:hover {
+  border-color: rgba(201, 168, 76, 0.3) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+  transform: translateY(-2px);
+}
+
 /* ─── Noise/grain overlay for nonprofit section ─── */
 .grain-overlay {
   position: relative;

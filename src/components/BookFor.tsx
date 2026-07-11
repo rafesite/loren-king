@@ -40,10 +40,9 @@ export default function BookFor() {
   return (
     <section
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#0a0a0a', padding: '100px 0' }}
+      style={{ background: '#FFFDF7', padding: '100px 0' }}
     >
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px, 5vw, 40px)' }}>
-        {/* Header */}
         <div
           className={`reveal ${visible ? 'visible' : ''}`}
           style={{ textAlign: 'center', marginBottom: 60 }}
@@ -54,7 +53,7 @@ export default function BookFor() {
               fontFamily: 'Cormorant Garamond, serif',
               fontWeight: 700,
               fontSize: 'clamp(34px, 4vw, 50px)',
-              color: '#F5F0E8',
+              color: '#1a1a1a',
               lineHeight: 1.1,
             }}
           >
@@ -62,7 +61,6 @@ export default function BookFor() {
           </h2>
         </div>
 
-        {/* Grid */}
         <div
           className="stagger"
           style={{
@@ -74,20 +72,21 @@ export default function BookFor() {
           {OFFERINGS.map(({ Icon, title, desc }) => (
             <div
               key={title}
-              className={`reveal card-hover ${visible ? 'visible' : ''}`}
+              className={`reveal card-hover-light ${visible ? 'visible' : ''}`}
               style={{
-                background: '#111111',
+                background: '#ffffff',
                 padding: '32px 28px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 16,
+                border: '1px solid rgba(0,0,0,0.06)',
               }}
             >
               <div
                 style={{
                   width: 44,
                   height: 44,
-                  border: '1px solid rgba(201,168,76,0.3)',
+                  border: '1px solid rgba(201,168,76,0.4)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -100,7 +99,7 @@ export default function BookFor() {
                   fontFamily: 'DM Sans, sans-serif',
                   fontWeight: 500,
                   fontSize: 15,
-                  color: '#F5F0E8',
+                  color: '#1a1a1a',
                   margin: 0,
                 }}
               >
@@ -110,7 +109,7 @@ export default function BookFor() {
                 style={{
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: 13,
-                  color: '#888880',
+                  color: '#6a6a65',
                   margin: 0,
                   lineHeight: 1.65,
                 }}

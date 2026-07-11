@@ -31,10 +31,9 @@ export default function Testimonials() {
   return (
     <section
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#0a0a0a', padding: '100px 0' }}
+      style={{ background: '#F2F0EC', padding: '100px 0' }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(20px, 5vw, 40px)' }}>
-        {/* Header */}
         <div
           className={`reveal ${visible ? 'visible' : ''}`}
           style={{ textAlign: 'center', marginBottom: 56 }}
@@ -45,7 +44,7 @@ export default function Testimonials() {
               fontFamily: 'Cormorant Garamond, serif',
               fontWeight: 700,
               fontSize: 'clamp(34px, 4vw, 50px)',
-              color: '#F5F0E8',
+              color: '#1a1a1a',
               lineHeight: 1.1,
             }}
           >
@@ -57,12 +56,13 @@ export default function Testimonials() {
         <div
           className={`reveal testimonial-featured-card ${visible ? 'visible' : ''}`}
           style={{
-            background: '#111111',
-            border: '1px solid rgba(201,168,76,0.25)',
+            background: '#ffffff',
+            border: '1px solid rgba(201,168,76,0.2)',
             padding: '52px 56px',
             marginBottom: 20,
             position: 'relative',
             transitionDelay: '0.1s',
+            boxShadow: '0 2px 24px rgba(0,0,0,0.06)',
           }}
         >
           <Quote
@@ -76,7 +76,7 @@ export default function Testimonials() {
               fontFamily: 'Cormorant Garamond, serif',
               fontStyle: 'italic',
               fontSize: 'clamp(20px, 2.5vw, 26px)',
-              color: '#F5F0E8',
+              color: '#1a1a1a',
               lineHeight: 1.65,
               margin: '0 0 32px',
             }}
@@ -101,7 +101,7 @@ export default function Testimonials() {
                 style={{
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: 12,
-                  color: '#888880',
+                  color: '#6a6a65',
                   margin: 0,
                 }}
               >
@@ -122,10 +122,12 @@ export default function Testimonials() {
           {TESTIMONIALS.slice(1).map((t, i) => (
             <div
               key={i}
-              className={`reveal card-hover ${visible ? 'visible' : ''}`}
+              className={`reveal card-hover-light ${visible ? 'visible' : ''}`}
               style={{
-                background: '#111111',
+                background: '#ffffff',
                 padding: '32px 28px',
+                border: '1px solid rgba(0,0,0,0.06)',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
                 transitionDelay: `${0.2 + i * 0.1}s`,
               }}
             >
@@ -140,7 +142,7 @@ export default function Testimonials() {
                   fontFamily: 'Cormorant Garamond, serif',
                   fontStyle: 'italic',
                   fontSize: 18,
-                  color: '#F5F0E8',
+                  color: '#1a1a1a',
                   lineHeight: 1.6,
                   margin: '0 0 24px',
                 }}
@@ -165,7 +167,7 @@ export default function Testimonials() {
                     style={{
                       fontFamily: 'DM Sans, sans-serif',
                       fontSize: 11,
-                      color: '#888880',
+                      color: '#6a6a65',
                       margin: 0,
                     }}
                   >

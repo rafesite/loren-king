@@ -15,7 +15,7 @@ const STATS: Stat[] = [
   { value: 5.1, decimals: 1, suffix: 'K', label: 'Facebook Followers' },
   { value: 15, suffix: '+', label: 'Years in Dentistry' },
   { value: 34, suffix: '+', label: 'Solo Skydives' },
-  { value: 7, suffix: '', label: 'States Practiced' },
+  { value: 10, suffix: '', label: 'States Practiced' },
 ];
 
 function CountUp({ value, decimals = 0, suffix, active }: { value: number; decimals?: number; suffix: string; active: boolean }) {

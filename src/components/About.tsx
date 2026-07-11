@@ -7,7 +7,7 @@ export default function About() {
     <section
       id="about"
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#080808', padding: '100px 0' }}
+      style={{ background: '#F2F0EC', padding: '100px 0' }}
     >
       <div
         style={{
@@ -30,7 +30,6 @@ export default function About() {
               margin: '0 auto',
             }}
           >
-            {/* Gold accent border offset */}
             <div
               style={{
                 position: 'absolute',
@@ -38,13 +37,14 @@ export default function About() {
                 left: -16,
                 right: 16,
                 bottom: -16,
-                border: '1px solid rgba(201,168,76,0.25)',
+                border: '1px solid rgba(201,168,76,0.35)',
                 zIndex: 0,
               }}
             />
             <img
               src="/50401340447_(1).jpg"
               alt="Loren King — Global Public Speaker"
+              className="img-editorial"
               style={{
                 position: 'relative',
                 zIndex: 1,
@@ -79,9 +79,9 @@ export default function About() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             {[
-              `Loren King is a Global Public Speaker, Registered Dental Hygienist, and advocate dedicated to advancing human trafficking awareness across healthcare and public health. With 15 years in dentistry — practicing across 7 states as a traveling hygienist — she brings a rare clinical perspective to every stage she steps onto.`,
+              `Loren King is a Global Public Speaker, Registered Dental Hygienist, and advocate dedicated to advancing human trafficking awareness across healthcare and public health. With 15 years in dentistry — practicing across 10 states as a traveling hygienist — she brings a rare clinical perspective to every stage she steps onto.`,
               `She is the founder of Finding Anon, a nonprofit focused on human trafficking awareness, survivor support, and policy reform. She is also building Anon — a facial recognition tech initiative designed to help identify missing persons and disrupt trafficking networks.`,
-              `Beyond advocacy, Loren serves as Co-Lead of the Council for Allied Healthcare Professionals at the American Academy of Artificial Intelligence in Dentistry, and is the host of the Voices of Dental AI podcast.`,
+              `Beyond advocacy, Loren serves as Co-Lead of the Council for Allied Healthcare Professionals at the American Academy of Artificial Intelligence in Dentistry.`,
               `Known for fearless energy — including 34 solo skydives — Loren's mission is clear: use innovation, education, and storytelling to save lives.`,
             ].map((p, i) => (
               <p
@@ -90,7 +90,7 @@ export default function About() {
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: 15,
                   lineHeight: 1.8,
-                  color: '#888880',
+                  color: '#4a4a45',
                   margin: 0,
                 }}
               >
@@ -99,13 +99,12 @@ export default function About() {
             ))}
           </div>
 
-          {/* Pull quote */}
           <blockquote
             style={{
               margin: '36px 0 32px',
               padding: '24px 28px',
               borderLeft: '2px solid #C9A84C',
-              background: 'rgba(201,168,76,0.04)',
+              background: 'rgba(201,168,76,0.07)',
             }}
           >
             <p

@@ -1,163 +1,163 @@
-import { Quote } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
-const TESTIMONIALS = [
-  {
-    quote:
-      'Loren is one of the most passionate and driven KOLs I\'ve ever come across. Her presentations are deeply moving, easy to follow, and transformational. Her talks always received the highest evaluations in our annual Dental Whale conference.',
-    name: 'Fabio Oliveira',
-    title: '15+ Years Leadership in Dental, Management & Tech',
-    featured: true,
-  },
+const FEATURED = {
+  quote:
+    'Loren is one of the most passionate and driven voices I have ever come across. Her presentations are deeply moving, easy to follow, and transformational — consistently the highest-rated sessions at our annual conference.',
+  name: 'Fabio Oliveira',
+  title: 'Leadership in Dental, Management & Tech',
+};
+
+const SUPPORTING = [
   {
     quote:
       'Loren brings a unique combination of clinical authority and compelling storytelling. Every audience walks away changed. She is a rare voice in our profession.',
     name: 'Dr. Amanda Chen',
     title: 'Conference Program Director',
-    featured: false,
   },
   {
     quote:
-      'Her session on human trafficking awareness transformed the way our entire clinical team approaches patient care. The evaluation scores were the highest we\'ve ever seen.',
+      'Her session on human trafficking awareness transformed the way our entire clinical team approaches patient care. The evaluations were the highest we have ever seen.',
     name: 'Sara Mitchell, RDH',
     title: 'Director of Clinical Education',
-    featured: false,
+  },
+  {
+    quote:
+      'A rare speaker who pairs credibility with heart. Loren held the room from the first sentence to the last.',
+    name: 'James Holloway',
+    title: 'Event Producer',
   },
 ];
 
 export default function Testimonials() {
-  const { ref, visible } = useInView(0.06);
+  const { ref, visible } = useInView(0.1);
 
   return (
     <section
+      id="testimonials"
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#F2F0EC', padding: '100px 0' }}
+      style={{
+        background: '#080808',
+        padding: 'clamp(90px, 14vh, 160px) 0',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+      }}
     >
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(20px, 5vw, 40px)' }}>
-        <div
-          className={`reveal ${visible ? 'visible' : ''}`}
-          style={{ textAlign: 'center', marginBottom: 56 }}
-        >
-          <p className="section-eyebrow" style={{ marginBottom: 16 }}>Testimonials</p>
+      <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 clamp(24px, 5vw, 56px)' }}>
+        {/* Header */}
+        <div className={`reveal ${visible ? 'visible' : ''}`} style={{ marginBottom: 64, textAlign: 'center' }}>
+          <p className="eyebrow" style={{ marginBottom: 24 }}>
+            Testimonials
+          </p>
           <h2
-            style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 700,
-              fontSize: 'clamp(34px, 4vw, 50px)',
-              color: '#1a1a1a',
-              lineHeight: 1.1,
-            }}
+            className="serif-display"
+            style={{ fontSize: 'clamp(40px, 5.5vw, 68px)', color: '#f4f4f3', margin: 0 }}
           >
-            What People Are Saying
+            In Their Words
           </h2>
         </div>
 
-        {/* Featured testimonial */}
+        {/* Featured — large editorial quote */}
         <div
-          className={`reveal testimonial-featured-card ${visible ? 'visible' : ''}`}
+          className={`reveal ${visible ? 'visible' : ''}`}
           style={{
-            background: '#ffffff',
-            border: '1px solid rgba(201,168,76,0.2)',
-            padding: '52px 56px',
-            marginBottom: 20,
-            position: 'relative',
+            marginBottom: 80,
+            padding: 'clamp(40px, 6vw, 88px) 0',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            textAlign: 'center',
             transitionDelay: '0.1s',
-            boxShadow: '0 2px 24px rgba(0,0,0,0.06)',
           }}
         >
-          <Quote
-            size={36}
-            color="#C9A84C"
-            strokeWidth={1}
-            style={{ opacity: 0.4, marginBottom: 24 }}
-          />
-          <p
+          <span
             style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontStyle: 'italic',
-              fontSize: 'clamp(20px, 2.5vw, 26px)',
-              color: '#1a1a1a',
-              lineHeight: 1.65,
-              margin: '0 0 32px',
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 80,
+              lineHeight: 0.4,
+              color: 'rgba(255,255,255,0.2)',
+              display: 'block',
+              marginBottom: 28,
             }}
           >
-            "{TESTIMONIALS[0].quote}"
+            “
+          </span>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: 'clamp(24px, 3.6vw, 42px)',
+              lineHeight: 1.4,
+              color: '#f4f4f3',
+              margin: '0 auto 40px',
+              maxWidth: 920,
+            }}
+          >
+            {FEATURED.quote}
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div className="gold-line" />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
+            <span style={{ width: 28, height: 1, background: 'rgba(255,255,255,0.4)' }} />
             <div>
               <p
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 12,
                   fontWeight: 500,
-                  fontSize: 14,
-                  color: '#C9A84C',
-                  margin: '0 0 3px',
+                  letterSpacing: '0.16em',
+                  textTransform: 'uppercase',
+                  color: '#f4f4f3',
+                  margin: '0 0 4px',
                 }}
               >
-                {TESTIMONIALS[0].name}
+                {FEATURED.name}
               </p>
               <p
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontSize: 12,
-                  color: '#6a6a65',
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 11,
+                  fontWeight: 300,
+                  letterSpacing: '0.1em',
+                  color: 'rgba(230,230,227,0.5)',
                   margin: 0,
                 }}
               >
-                {TESTIMONIALS[0].title}
+                {FEATURED.title}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Supporting testimonials */}
+        {/* Supporting */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 20,
-          }}
+          className="stagger testimonials-grid"
         >
-          {TESTIMONIALS.slice(1).map((t, i) => (
+          {SUPPORTING.map((t, i) => (
             <div
               key={i}
-              className={`reveal card-hover-light ${visible ? 'visible' : ''}`}
-              style={{
-                background: '#ffffff',
-                padding: '32px 28px',
-                border: '1px solid rgba(0,0,0,0.06)',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
-                transitionDelay: `${0.2 + i * 0.1}s`,
-              }}
+              className={`reveal ${visible ? 'visible' : ''}`}
+              style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
             >
-              <Quote
-                size={22}
-                color="#C9A84C"
-                strokeWidth={1}
-                style={{ opacity: 0.35, marginBottom: 18 }}
-              />
               <p
                 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontStyle: 'italic',
-                  fontSize: 18,
-                  color: '#1a1a1a',
-                  lineHeight: 1.6,
-                  margin: '0 0 24px',
+                  fontWeight: 400,
+                  fontSize: 'clamp(17px, 1.7vw, 21px)',
+                  lineHeight: 1.55,
+                  color: 'rgba(244,244,243,0.88)',
+                  margin: 0,
                 }}
               >
-                "{t.quote}"
+                {t.quote}
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ width: 24, height: 1, background: '#C9A84C', opacity: 0.5 }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 'auto' }}>
+                <span style={{ width: 22, height: 1, background: 'rgba(255,255,255,0.35)' }} />
                 <div>
                   <p
                     style={{
-                      fontFamily: 'DM Sans, sans-serif',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 12,
                       fontWeight: 500,
-                      fontSize: 13,
-                      color: '#C9A84C',
+                      letterSpacing: '0.1em',
+                      color: '#f4f4f3',
                       margin: '0 0 2px',
                     }}
                   >
@@ -165,9 +165,10 @@ export default function Testimonials() {
                   </p>
                   <p
                     style={{
-                      fontFamily: 'DM Sans, sans-serif',
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: 11,
-                      color: '#6a6a65',
+                      fontWeight: 300,
+                      color: 'rgba(230,230,227,0.5)',
                       margin: 0,
                     }}
                   >
@@ -179,6 +180,15 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
+          .testimonials-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+      `}</style>
     </section>
   );
 }

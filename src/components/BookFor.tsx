@@ -5,101 +5,120 @@ const OFFERINGS = [
   {
     Icon: Mic,
     title: 'Keynote Speaking',
-    desc: 'Dynamic, story-driven keynotes for conferences and events',
+    desc: 'Story-driven keynotes for conferences, summits, and large audiences.',
   },
   {
     Icon: Award,
-    title: 'Continuing Education (CE)',
-    desc: 'Accredited CE courses for dental professionals',
+    title: 'Continuing Education',
+    desc: 'Accredited CE courses for dental and allied healthcare professionals.',
   },
   {
     Icon: Users,
-    title: 'Healthcare Team Training',
-    desc: 'On-site workshops for clinical teams',
+    title: 'Workshops & Team Training',
+    desc: 'On-site, hands-on workshops for clinical teams and practice leaders.',
   },
   {
     Icon: Radio,
-    title: 'Podcast Guest Appearances',
-    desc: 'Available for interviews and guest episodes',
+    title: 'Podcast & Guest Expert',
+    desc: 'Available for interviews, guest episodes, and expert commentary.',
   },
   {
     Icon: Handshake,
-    title: 'Brand & KOL Collaborations',
-    desc: 'Strategic partnerships with aligned brands',
+    title: 'Panel Moderation',
+    desc: 'Facilitating thoughtful, high-impact panel conversations.',
   },
   {
     Icon: Monitor,
     title: 'Webinars & Virtual Events',
-    desc: 'Engaging virtual education and presentations',
+    desc: 'Engaging virtual presentations and remote education sessions.',
   },
 ];
 
 export default function BookFor() {
-  const { ref, visible } = useInView(0.06);
+  const { ref, visible } = useInView(0.1);
 
   return (
     <section
+      id="book-for"
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#FFFDF7', padding: '100px 0' }}
+      style={{
+        background: '#0a0a0a',
+        padding: 'clamp(90px, 14vh, 160px) 0',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+      }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px, 5vw, 40px)' }}>
+      <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 clamp(24px, 5vw, 56px)' }}>
+        {/* Header */}
         <div
           className={`reveal ${visible ? 'visible' : ''}`}
-          style={{ textAlign: 'center', marginBottom: 60 }}
+          style={{ marginBottom: 72, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
         >
-          <p className="section-eyebrow" style={{ marginBottom: 16 }}>Engagements</p>
+          <p className="eyebrow" style={{ marginBottom: 24 }}>
+            Engagements
+          </p>
           <h2
+            className="serif-display"
             style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 700,
-              fontSize: 'clamp(34px, 4vw, 50px)',
-              color: '#1a1a1a',
-              lineHeight: 1.1,
+              fontSize: 'clamp(40px, 5.5vw, 68px)',
+              color: '#f4f4f3',
+              margin: '0 0 28px',
             }}
           >
-            Book Loren For...
+            Book Loren For
           </h2>
+          <div className="divider" style={{ marginBottom: 28 }} />
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 15,
+              fontWeight: 300,
+              lineHeight: 1.8,
+              color: 'rgba(230,230,227,0.7)',
+              margin: 0,
+              maxWidth: 520,
+            }}
+          >
+            From keynote stages to intimate workshops, Loren brings clarity, conviction, and a clinical
+            perspective to every format.
+          </p>
         </div>
 
+        {/* Grid */}
         <div
-          className="stagger"
+          className="stagger offerings-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 16,
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 0,
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderLeft: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           {OFFERINGS.map(({ Icon, title, desc }) => (
             <div
               key={title}
-              className={`reveal card-hover-light ${visible ? 'visible' : ''}`}
+              className={`reveal ${visible ? 'visible' : ''}`}
               style={{
-                background: '#ffffff',
-                padding: '32px 28px',
+                borderRight: '1px solid rgba(255,255,255,0.08)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                padding: 'clamp(32px, 4vw, 52px)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 16,
-                border: '1px solid rgba(0,0,0,0.06)',
+                gap: 20,
+                minHeight: 240,
+                transition: 'background 0.4s ease',
               }}
+              onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.018)')}
+              onMouseOut={(e) => (e.currentTarget.style.background = 'transparent')}
             >
-              <div
-                style={{
-                  width: 44,
-                  height: 44,
-                  border: '1px solid rgba(201,168,76,0.4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Icon size={18} color="#C9A84C" strokeWidth={1.5} />
-              </div>
+              <Icon size={26} strokeWidth={1.25} color="rgba(255,255,255,0.7)" />
               <h3
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 500,
-                  fontSize: 15,
-                  color: '#1a1a1a',
+                  fontSize: 'clamp(22px, 2.2vw, 28px)',
+                  lineHeight: 1.2,
+                  color: '#f4f4f3',
                   margin: 0,
                 }}
               >
@@ -107,11 +126,12 @@ export default function BookFor() {
               </h3>
               <p
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: 13,
-                  color: '#6a6a65',
+                  fontWeight: 300,
+                  lineHeight: 1.75,
+                  color: 'rgba(230,230,227,0.6)',
                   margin: 0,
-                  lineHeight: 1.65,
                 }}
               >
                 {desc}
@@ -120,6 +140,15 @@ export default function BookFor() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) and (min-width: 861px) {
+          .offerings-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 860px) {
+          .offerings-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

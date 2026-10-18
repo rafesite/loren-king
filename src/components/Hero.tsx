@@ -1,201 +1,227 @@
-export default function Hero() {
+import { useEffect, useState } from 'react';
+
+type HeroProps = {
+  active: boolean;
+};
+
+export default function Hero({ active }: HeroProps) {
+  const [imgReady, setImgReady] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/loren-hero.png.png';
+    img.onload = () => setImgReady(true);
+    img.onerror = () => setImgReady(true);
+    if (img.complete) setImgReady(true);
+  }, []);
+
+  const animate = active && imgReady;
+
   return (
     <section
+      id="top"
       style={{
-        width: "100%",
-        height: "100vh",
-        background: "linear-gradient(160deg, #1c1c1c 0%, #0d0d0d 55%, #080808 100%)",
-        position: "relative",
-        overflow: "hidden",
+        position: 'relative',
+        width: '100%',
+        minHeight: '100vh',
+        background: 'linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 60%, #0a0a0a 100%)',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'flex-end',
       }}
     >
-      {/* Eyebrow */}
+      {/* Soft radial light behind subject */}
       <div
-        className="hero-eyebrow"
         style={{
-          position: "absolute",
-          top: "80px",
-          width: "100%",
-          textAlign: "center",
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "11px",
-          fontWeight: 600,
-          letterSpacing: "0.3em",
-          color: "#C9A84C",
-          textTransform: "uppercase",
-          opacity: 0.8,
-          zIndex: 3,
+          position: 'absolute',
+          top: '-10%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '80vw',
+          height: '80vh',
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 60%)',
+          pointerEvents: 'none',
+          zIndex: 0,
         }}
-      >
-        Global Public Speaker · RDH · Human Trafficking Advocate
-      </div>
+      />
 
-      {/* BIG NAME — behind photo on desktop, stacked LOREN/KING on mobile */}
+      {/* Background photo — cinematic, zoom-out reveal */}
       <div
-        className="hero-name-container"
         style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: "18%",
+          position: 'absolute',
+          inset: 0,
           zIndex: 1,
-          textAlign: "center",
-        }}
-      >
-        <span
-          className="hero-name hero-name-animate"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            letterSpacing: "0.03em",
-            textTransform: "uppercase",
-            display: "block",
-            lineHeight: 1,
-          }}
-        >
-          LOREN KING
-        </span>
-      </div>
-
-      {/* PHOTO */}
-      <div
-        className="hero-photo-container hero-photo-wrap"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: "50%",
-          zIndex: 2,
-          width: "clamp(280px, 42vw, 560px)",
-          height: "72vh",
+          opacity: animate ? 1 : 0,
+          transform: animate ? 'scale(1)' : 'scale(1.12)',
+          transition: 'opacity 1.4s cubic-bezier(0.22,1,0.36,1), transform 6s cubic-bezier(0.22,1,0.36,1)',
         }}
       >
         <img
           src="/loren-hero.png.png"
-          alt="Loren King"
+          alt="Loren King — Speaker, Advocate, Educator"
+          className="img-editorial"
           style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center top",
-            display: "block",
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 18%',
+            display: 'block',
+          }}
+        />
+        {/* Cinematic gradient overlays for legibility */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 30%, rgba(10,10,10,0.25) 60%, rgba(10,10,10,0.85) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg, rgba(10,10,10,0.6) 0%, transparent 35%, transparent 65%, rgba(10,10,10,0.5) 100%)',
+            pointerEvents: 'none',
           }}
         />
       </div>
 
-      {/* CTA Buttons — bottom left on desktop, centered on mobile */}
+      {/* Content */}
       <div
-        className="hero-cta-buttons"
         style={{
-          position: "absolute",
-          bottom: "40px",
-          left: "6%",
-          zIndex: 3,
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          maxWidth: 1320,
+          margin: '0 auto',
+          padding: '0 clamp(24px, 5vw, 56px) clamp(80px, 12vh, 130px)',
         }}
       >
-        <a
-          href="#contact"
+        {/* Eyebrow */}
+        <p
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "9px",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "#080808",
-            background: "#C9A84C",
-            border: "none",
-            padding: "12px 24px",
-            cursor: "pointer",
-            textDecoration: "none",
-            display: "inline-block",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: '0.34em',
+            textTransform: 'uppercase',
+            color: 'rgba(244,244,243,0.7)',
+            margin: '0 0 28px',
+            opacity: animate ? 1 : 0,
+            animation: animate ? 'heroEyebrowIn 1.2s 0.3s cubic-bezier(0.22,1,0.36,1) both' : undefined,
           }}
         >
-          Book Loren to Speak
-        </a>
-        <a
-          href="#talks"
+          Speaker · Advocate · Educator
+        </p>
+
+        {/* Name */}
+        <h1
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "9px",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "#C9A84C",
-            background: "transparent",
-            border: "0.5px solid rgba(201,168,76,0.6)",
-            padding: "12px 24px",
-            cursor: "pointer",
-            textDecoration: "none",
-            display: "inline-block",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            fontSize: 'clamp(58px, 11vw, 168px)',
+            lineHeight: 0.92,
+            letterSpacing: '-0.02em',
+            color: '#f4f4f3',
+            margin: '0 0 32px',
+            textTransform: 'uppercase',
+            opacity: animate ? 1 : 0,
+            transform: animate ? 'translateY(0)' : 'translateY(40px)',
+            animation: animate ? 'heroTextRise 1.1s 0.45s cubic-bezier(0.22,1,0.36,1) both' : undefined,
           }}
         >
-          Explore Talks
-        </a>
+          Loren King
+        </h1>
+
+        {/* Divider */}
+        <div
+          style={{
+            width: 56,
+            height: 1,
+            background: 'rgba(255,255,255,0.5)',
+            margin: '0 0 32px',
+            opacity: animate ? 1 : 0,
+            transform: animate ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: 'opacity 0.8s 0.9s ease, transform 0.9s 0.9s cubic-bezier(0.22,1,0.36,1)',
+          }}
+        />
+
+        {/* Positioning statement */}
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 400,
+            fontSize: 'clamp(20px, 2.6vw, 30px)',
+            lineHeight: 1.45,
+            color: 'rgba(244,244,243,0.88)',
+            maxWidth: 620,
+            margin: '0 0 48px',
+            opacity: animate ? 1 : 0,
+            transform: animate ? 'translateY(0)' : 'translateY(24px)',
+            animation: animate ? 'heroTextRise 1s 0.7s cubic-bezier(0.22,1,0.36,1) both' : undefined,
+          }}
+        >
+          Speaker, advocate, and educator advancing conversations in healthcare, leadership, and human-centered impact.
+        </p>
+
+        {/* CTAs */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '16px',
+            opacity: animate ? 1 : 0,
+            transform: animate ? 'translateY(0)' : 'translateY(20px)',
+            animation: animate ? 'heroTextRise 1s 0.9s cubic-bezier(0.22,1,0.36,1) both' : undefined,
+          }}
+        >
+          <a href="#contact" className="btn-primary" style={{ textDecoration: 'none' }}>
+            Book Loren to Speak
+          </a>
+          <a href="#talks" className="btn-ghost" style={{ textDecoration: 'none' }}>
+            Explore Speaking Topics
+          </a>
+        </div>
       </div>
 
-      {/* Tagline — bottom right (hidden on mobile) */}
+      {/* Scroll cue */}
       <div
-        className="hero-tagline"
         style={{
-          position: "absolute",
-          bottom: "44px",
-          right: "6%",
+          position: 'absolute',
+          bottom: 28,
+          right: 'clamp(24px, 5vw, 56px)',
           zIndex: 3,
-          fontFamily: "'Cormorant Garamond', serif",
-          fontStyle: "italic",
-          fontSize: "15px",
-          color: "#C9A84C",
-          textAlign: "right",
-          lineHeight: 1.7,
-          opacity: 0.9,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 10,
+          opacity: animate ? 0.6 : 0,
+          transition: 'opacity 1s 1.4s ease',
         }}
+        className="scroll-cue"
       >
-        Humanity First.<br />Innovation for Impact.
+        <span
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 9,
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            color: 'rgba(244,244,243,0.6)',
+            writingMode: 'vertical-rl',
+            transform: 'rotate(180deg)',
+          }}
+        >
+          Scroll
+        </span>
       </div>
 
-      {/* Side label */}
-      <div
-        className="hero-side-label"
-        style={{
-          position: "absolute",
-          left: "14px",
-          top: "50%",
-          transform: "translateY(-50%) rotate(-90deg)",
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "7px",
-          letterSpacing: "0.24em",
-          color: "#2a2a2a",
-          textTransform: "uppercase",
-          zIndex: 3,
-          whiteSpace: "nowrap",
-        }}
-      >
-        connectwithloren.com
-      </div>
-
-      {/* Animations */}
       <style>{`
-        .hero-name-animate {
-          animation: goldCycle 3s ease-in-out infinite;
-        }
-        @keyframes goldCycle {
-          0%   { color: #ffffff; }
-          50%  { color: #C9A84C; }
-          100% { color: #ffffff; }
-        }
-        .hero-photo-wrap {
-          animation: heroFadeIn 1.4s ease-out forwards;
-          opacity: 0;
-        }
-        @keyframes heroFadeIn {
-          0% {
-            opacity: 0;
-            transform: scale(1.06) translateX(-50%);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1) translateX(-50%);
-          }
+        @media (max-width: 860px) {
+          .scroll-cue { display: none !important; }
         }
       `}</style>
     </section>

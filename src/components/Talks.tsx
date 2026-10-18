@@ -3,133 +3,144 @@ import { useInView } from '../hooks/useInView';
 const TALKS = [
   {
     num: '01',
-    title: 'Human Trafficking Awareness',
-    desc: '30% of victims sit in your chair each year. Here\'s how to spot the signs and respond with confidence.',
+    title: 'Human Trafficking Awareness in Healthcare',
+    desc: 'Recognizing the signs of trafficking in clinical settings and responding with confidence, compassion, and protocol.',
   },
   {
     num: '02',
-    title: 'AI In Dentistry',
-    desc: 'From static to real-time: how AI is transforming case support, patient care, and practice growth.',
+    title: 'AI in Dentistry',
+    desc: 'From static to real-time: how artificial intelligence is transforming case support, patient care, and practice growth.',
   },
   {
     num: '03',
     title: 'The Airway Blueprint',
-    desc: 'Start-to-finish education: screening, implementation, and how to get paid for airway solutions.',
+    desc: 'End-to-end education on airway health — screening, implementation, and building a thriving airway program.',
   },
   {
     num: '04',
     title: 'Elevating Dental Hygiene',
-    desc: 'Raising the standard of clinical excellence and professional identity in hygiene.',
+    desc: 'Raising the standard of clinical excellence and professional identity across the hygiene community.',
   },
   {
     num: '05',
     title: 'The Hygiene Shortage Myth',
-    desc: 'A bold look at what\'s really driving the shortage — and what leaders can do about it.',
+    desc: 'A bold, data-informed look at what is really driving the workforce shortage — and what leaders can do about it.',
   },
   {
     num: '06',
     title: 'Beyond Survival: The Human Experience',
-    desc: 'Empowering healthcare teams to lead with compassion, resilience, and purpose.',
+    desc: 'Empowering healthcare teams to lead with resilience, purpose, and human-centered care.',
   },
 ];
 
 export default function Talks() {
-  const { ref, visible } = useInView(0.06);
+  const { ref, visible } = useInView(0.1);
 
   return (
     <section
       id="talks"
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#080808', padding: '100px 0' }}
+      style={{
+        background: '#080808',
+        padding: 'clamp(90px, 14vh, 160px) 0',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+      }}
     >
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px, 5vw, 40px)' }}>
+      <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 clamp(24px, 5vw, 56px)' }}>
         {/* Header */}
         <div
           className={`reveal ${visible ? 'visible' : ''}`}
-          style={{ textAlign: 'center', marginBottom: 60 }}
+          style={{ maxWidth: 720, marginBottom: 72 }}
         >
-          <p className="section-eyebrow" style={{ marginBottom: 16 }}>Signature Programs</p>
+          <p className="eyebrow" style={{ marginBottom: 24 }}>
+            Signature Programs
+          </p>
           <h2
+            className="serif-display"
             style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 700,
-              fontSize: 'clamp(34px, 4vw, 50px)',
-              color: '#F5F0E8',
-              marginBottom: 16,
-              lineHeight: 1.1,
+              fontSize: 'clamp(40px, 5.5vw, 68px)',
+              color: '#f4f4f3',
+              margin: '0 0 28px',
             }}
           >
-            2026–2027 Signature Talks
+            Speaking Topics
           </h2>
+          <div className="divider" style={{ marginBottom: 28 }} />
           <p
             style={{
-              fontFamily: 'DM Sans, sans-serif',
-              fontSize: 14,
-              color: '#888880',
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 15,
+              fontWeight: 300,
+              lineHeight: 1.8,
+              color: 'rgba(230,230,227,0.7)',
+              margin: 0,
               maxWidth: 560,
-              margin: '0 auto',
-              lineHeight: 1.75,
             }}
           >
-            Six powerful programs designed to challenge perspectives, inspire change, and transform the way we practice — and live — dentistry.
+            Six powerful programs designed to challenge perspectives, inspire change, and transform the
+            way healthcare professionals practice — and lead.
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Editorial grid — hairline dividers, no boxes */}
         <div
-          className="stagger"
+          className="stagger talks-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 1,
-            background: 'rgba(201,168,76,0.08)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderLeft: '1px solid rgba(255,255,255,0.08)',
           }}
         >
           {TALKS.map((talk) => (
             <div
               key={talk.num}
-              className={`reveal card-hover ${visible ? 'visible' : ''}`}
+              className={`reveal ${visible ? 'visible' : ''}`}
               style={{
-                background: '#111111',
-                padding: '36px 32px',
+                borderRight: '1px solid rgba(255,255,255,0.08)',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                padding: 'clamp(32px, 4vw, 52px)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 14,
-                cursor: 'default',
+                gap: 20,
+                minHeight: 280,
+                transition: 'background 0.4s ease',
+                background: 'transparent',
               }}
+              onMouseOver={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.018)')}
+              onMouseOut={(e) => (e.currentTarget.style.background = 'transparent')}
             >
               <span
                 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontWeight: 700,
-                  fontSize: 42,
-                  color: 'rgba(201,168,76,0.35)',
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 500,
+                  fontSize: 30,
+                  color: 'rgba(255,255,255,0.3)',
                   lineHeight: 1,
-                  display: 'block',
                 }}
               >
                 {talk.num}
               </span>
               <h3
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 500,
-                  fontSize: 16,
-                  color: '#F5F0E8',
+                  fontSize: 'clamp(22px, 2.2vw, 28px)',
+                  lineHeight: 1.2,
+                  color: '#f4f4f3',
                   margin: 0,
-                  lineHeight: 1.3,
                 }}
               >
                 {talk.title}
               </h3>
               <p
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontStyle: 'italic',
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: 13,
-                  color: '#888880',
+                  fontWeight: 300,
+                  lineHeight: 1.75,
+                  color: 'rgba(230,230,227,0.6)',
                   margin: 0,
-                  lineHeight: 1.7,
                 }}
               >
                 {talk.desc}
@@ -138,28 +149,25 @@ export default function Talks() {
           ))}
         </div>
 
-        {/* Bottom note */}
-        <p
+        {/* CTA */}
+        <div
           className={`reveal ${visible ? 'visible' : ''}`}
-          style={{
-            fontFamily: 'DM Sans, sans-serif',
-            fontSize: 11,
-            color: '#888880',
-            textAlign: 'center',
-            marginTop: 32,
-            lineHeight: 1.7,
-            transitionDelay: '0.5s',
-          }}
+          style={{ marginTop: 56, display: 'flex', justifyContent: 'center', transitionDelay: '0.4s' }}
         >
-          Sponsorship support available by several companies. Inquire at{' '}
-          <a
-            href="mailto:support@connectwithloren.com"
-            style={{ color: '#C9A84C', textDecoration: 'none' }}
-          >
-            support@connectwithloren.com
+          <a href="#contact" className="btn-ghost" style={{ textDecoration: 'none' }}>
+            Request a Custom Topic
           </a>
-        </p>
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) and (min-width: 861px) {
+          .talks-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 860px) {
+          .talks-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

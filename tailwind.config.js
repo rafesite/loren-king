@@ -4,25 +4,26 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],
-        dm: ['DM Sans', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        gold: {
-          DEFAULT: '#C9A84C',
-          light: '#E8D5A3',
-          dim: 'rgba(201,168,76,0.2)',
-        },
         ink: {
-          DEFAULT: '#080808',
-          surface: '#111111',
-          card: '#1a1a1a',
-          overlay: '#0f0f0f',
-          mid: '#131313',
+          DEFAULT: '#0a0a0a',
+          deep: '#060606',
+          surface: '#101010',
+          card: '#141414',
+          raised: '#1a1a1a',
+          line: 'rgba(255,255,255,0.08)',
+          lineSoft: 'rgba(255,255,255,0.05)',
         },
-        warm: {
-          white: '#F5F0E8',
-          muted: '#888880',
+        ash: {
+          100: '#f4f4f3',
+          200: '#e6e6e3',
+          300: '#cfcfca',
+          400: '#9a9a95',
+          500: '#6b6b66',
+          600: '#444440',
         },
       },
     },

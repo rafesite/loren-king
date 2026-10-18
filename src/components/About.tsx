@@ -1,59 +1,70 @@
 import { useState } from 'react';
 import { useInView } from '../hooks/useInView';
 
+const CREDIBILITY = [
+  '15 years in clinical dental hygiene',
+  'Practiced across 10 states',
+  'Co-Lead, Council for Allied Healthcare Professionals — AAID',
+  'Recognized voice in AI & human-centered healthcare',
+];
+
 export default function About() {
-  const { ref, visible } = useInView(0.08);
+  const { ref, visible } = useInView(0.12);
   const [hovered, setHovered] = useState(false);
 
   return (
     <section
       id="about"
       ref={ref as React.RefObject<HTMLDivElement>}
-      style={{ background: '#F2F0EC', padding: '100px 0' }}
+      style={{
+        background: '#0a0a0a',
+        padding: 'clamp(90px, 14vh, 160px) 0',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+      }}
     >
       <div
         style={{
-          maxWidth: 1200,
+          maxWidth: 1320,
           margin: '0 auto',
-          padding: '0 clamp(20px, 5vw, 40px)',
+          padding: '0 clamp(24px, 5vw, 56px)',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'clamp(40px, 5vw, 72px)',
-          alignItems: 'start',
+          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.1fr)',
+          gap: 'clamp(48px, 8vw, 112px)',
+          alignItems: 'center',
         }}
+        className="about-grid"
       >
-        {/* Left — Photo */}
-        <div className={`reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0s' }}>
-          <div
-            style={{
-              position: 'relative',
-              aspectRatio: '3/4',
-              maxWidth: 480,
-              margin: '0 auto',
-            }}
-          >
+        {/* Photo — editorial frame */}
+        <div className={`reveal ${visible ? 'visible' : ''}`}>
+          <div style={{ position: 'relative', aspectRatio: '4/5', maxWidth: 540, margin: '0 auto' }}>
+            {/* Thin offset frame */}
             <div
               style={{
                 position: 'absolute',
-                top: 16,
-                left: -16,
-                right: 16,
-                bottom: -16,
-                border: '1px solid rgba(201,168,76,0.35)',
+                top: 18,
+                left: -18,
+                right: 18,
+                bottom: -18,
+                border: '1px solid rgba(255,255,255,0.12)',
                 zIndex: 0,
               }}
             />
-            {/* Image container with crossfade */}
             <div
-              style={{ position: 'relative', width: '100%', height: '100%', zIndex: 1, cursor: 'pointer' }}
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                zIndex: 1,
+                overflow: 'hidden',
+                cursor: 'pointer',
+              }}
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
               onClick={() => setHovered((v) => !v)}
             >
-              {/* Image 1 — default */}
               <img
                 src="/meet_loren1.jpg"
-                alt="Loren King — Global Public Speaker"
+                alt="Loren King — Speaker and Advocate"
                 className="img-editorial"
                 style={{
                   position: 'absolute',
@@ -62,11 +73,10 @@ export default function About() {
                   height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center',
-                  display: 'block',
-                  opacity: 1,
+                  transition: 'opacity 0.7s ease',
+                  opacity: hovered ? 0 : 1,
                 }}
               />
-              {/* Image 2 — hover/tap reveal */}
               <img
                 src="/meet_loren2.jpg"
                 alt="Loren King"
@@ -78,100 +88,126 @@ export default function About() {
                   height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center',
-                  display: 'block',
                   opacity: hovered ? 1 : 0,
-                  transition: 'opacity 0.5s ease-in-out',
-                  zIndex: 1,
+                  transition: 'opacity 0.7s ease',
                 }}
               />
             </div>
           </div>
         </div>
 
-        {/* Right — Text */}
-        <div className={`reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0.15s' }}>
-          <p className="section-eyebrow" style={{ marginBottom: 16 }}>About Loren</p>
+        {/* Text */}
+        <div className={`reveal ${visible ? 'visible' : ''}`} style={{ transitionDelay: '0.12s' }}>
+          <p className="eyebrow" style={{ marginBottom: 28 }}>
+            About Loren
+          </p>
 
           <h2
+            className="serif-display"
             style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontWeight: 700,
-              fontSize: 'clamp(36px, 4vw, 52px)',
-              color: '#C9A84C',
-              lineHeight: 1.1,
-              marginBottom: 28,
+              fontSize: 'clamp(40px, 5.5vw, 72px)',
+              color: '#f4f4f3',
+              margin: '0 0 32px',
             }}
           >
             Meet Loren King
           </h2>
 
-          <div className="gold-line" style={{ marginBottom: 28 }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: 560 }}>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 15,
+                fontWeight: 300,
+                lineHeight: 1.8,
+                color: 'rgba(230,230,227,0.78)',
+                margin: 0,
+              }}
+            >
+              Loren King is a speaker, registered dental hygienist, and advocate dedicated to advancing
+              human trafficking awareness and human-centered care across healthcare. With fifteen years
+              in clinical practice — working as a traveling hygienist across{' '}
+              <span style={{ color: '#f4f4f3', fontWeight: 400 }}>10 states</span> — she brings a rare,
+              ground-level perspective to every stage she steps onto.
+            </p>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 15,
+                fontWeight: 300,
+                lineHeight: 1.8,
+                color: 'rgba(230,230,227,0.78)',
+                margin: 0,
+              }}
+            >
+              She serves as Co-Lead of the Council for Allied Healthcare Professionals at the American
+              Academy of Artificial Intelligence in Dentistry, and speaks nationally on healthcare,
+              leadership, and advocacy.
+            </p>
+          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            {[
-              `Loren King is a Global Public Speaker, Registered Dental Hygienist, and advocate dedicated to advancing human trafficking awareness across healthcare and public health. With 15 years in dentistry — practicing across 10 states as a traveling hygienist — she brings a rare clinical perspective to every stage she steps onto.`,
-              `She is the founder of Finding Anon, a nonprofit focused on human trafficking awareness, survivor support, and policy reform. She is also building Anon — a facial recognition tech initiative designed to help identify missing persons and disrupt trafficking networks.`,
-              `Beyond advocacy, Loren serves as Co-Lead of the Council for Allied Healthcare Professionals at the American Academy of Artificial Intelligence in Dentistry.`,
-              `Known for fearless energy — including 34 solo skydives — Loren's mission is clear: use innovation, education, and storytelling to save lives.`,
-            ].map((p, i) => (
-              <p
-                key={i}
+          {/* Credibility list */}
+          <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {CREDIBILITY.map((c) => (
+              <div
+                key={c}
                 style={{
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontSize: 15,
-                  lineHeight: 1.8,
-                  color: '#4a4a45',
-                  margin: 0,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 16,
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  paddingBottom: 14,
                 }}
               >
-                {p}
-              </p>
+                <span style={{ width: 18, height: 1, background: 'rgba(255,255,255,0.4)', marginTop: 11, flexShrink: 0 }} />
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 13,
+                    fontWeight: 300,
+                    letterSpacing: '0.04em',
+                    color: 'rgba(230,230,227,0.85)',
+                  }}
+                >
+                  {c}
+                </span>
+              </div>
             ))}
           </div>
 
+          {/* Pullout quote */}
           <blockquote
             style={{
-              margin: '36px 0 32px',
-              padding: '24px 28px',
-              borderLeft: '2px solid #C9A84C',
-              background: 'rgba(201,168,76,0.07)',
+              marginTop: 44,
+              paddingLeft: 24,
+              borderLeft: '1px solid rgba(255,255,255,0.4)',
             }}
           >
             <p
               style={{
-                fontFamily: 'Cormorant Garamond, serif',
+                fontFamily: "'Cormorant Garamond', serif",
                 fontStyle: 'italic',
-                fontSize: 26,
-                color: '#C9A84C',
-                margin: 0,
+                fontWeight: 400,
+                fontSize: 'clamp(22px, 2.6vw, 30px)',
                 lineHeight: 1.4,
+                color: '#f4f4f3',
+                margin: 0,
               }}
             >
-              "Your vulnerability is your superpower."
+              “Your vulnerability is your superpower.”
             </p>
           </blockquote>
-
-          <a
-            href="#contact"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              color: '#C9A84C',
-              fontFamily: 'DM Sans, sans-serif',
-              fontSize: 11,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              transition: 'gap 0.2s ease',
-            }}
-            onMouseOver={(e) => ((e.currentTarget as HTMLAnchorElement).style.gap = '12px')}
-            onMouseOut={(e) => ((e.currentTarget as HTMLAnchorElement).style.gap = '8px')}
-          >
-            Book Loren to Speak <span>→</span>
-          </a>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 860px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 56px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,35 +1,55 @@
+import { useEffect, useState } from 'react';
+import Preloader from './components/Preloader';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import AuthorityBar from './components/AuthorityBar';
-import FeaturedIn from './components/FeaturedIn';
 import About from './components/About';
 import Talks from './components/Talks';
 import BookFor from './components/BookFor';
-import Schedule from './components/Schedule';
 import Testimonials from './components/Testimonials';
-import Podcast from './components/Podcast';
-import Nonprofit from './components/Nonprofit';
+import Media from './components/Media';
+import Insights from './components/Insights';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
+  const [loaded, setLoaded] = useState(false);
+
+  // Lock scroll while the preloader is visible.
+  useEffect(() => {
+    if (!loaded) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [loaded]);
+
   return (
-    <div style={{ background: '#080808', minHeight: '100vh' }}>
-      <Navigation />
-      <main>
-        <Hero />
-        <AuthorityBar />
-        <FeaturedIn />
-        <About />
-        <Talks />
-        <BookFor />
-        <Schedule />
-        <Testimonials />
-        <Podcast />
-        <Nonprofit />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
+      <div
+        style={{
+          background: '#0a0a0a',
+          minHeight: '100vh',
+          opacity: loaded ? 1 : 0,
+          transition: 'opacity 0.2s ease',
+        }}
+      >
+        <Navigation />
+        <main>
+          <Hero active={loaded} />
+          <About />
+          <Talks />
+          <BookFor />
+          <Testimonials />
+          <Media />
+          <Insights />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }

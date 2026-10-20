@@ -9,7 +9,7 @@ export default function Hero({ active }: HeroProps) {
 
   useEffect(() => {
     const img = new Image();
-    img.src = '/loren-hero.png.png';
+    img.src = '/Loren_header.jpg';
     img.onload = () => setImgReady(true);
     img.onerror = () => setImgReady(true);
     if (img.complete) setImgReady(true);
@@ -57,14 +57,14 @@ export default function Hero({ active }: HeroProps) {
         }}
       >
         <img
-          src="/loren-hero.png.png"
+          src="/Loren_header.jpg"
           alt="Loren King — Speaker, Advocate, Educator"
           className="img-editorial"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 18%',
+            objectPosition: 'center 24%',
             display: 'block',
           }}
         />

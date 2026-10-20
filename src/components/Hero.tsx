@@ -74,7 +74,7 @@ export default function Hero({ active }: HeroProps) {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 30%, rgba(10,10,10,0.25) 60%, rgba(10,10,10,0.85) 100%)',
+              'linear-gradient(180deg, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.25) 32%, rgba(8,8,8,0.45) 62%, rgba(8,8,8,0.92) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -83,7 +83,7 @@ export default function Hero({ active }: HeroProps) {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(90deg, rgba(10,10,10,0.6) 0%, transparent 35%, transparent 65%, rgba(10,10,10,0.5) 100%)',
+              'linear-gradient(90deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.2) 30%, transparent 50%, transparent 70%, rgba(8,8,8,0.55) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -105,11 +105,12 @@ export default function Hero({ active }: HeroProps) {
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 11,
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: '0.34em',
             textTransform: 'uppercase',
-            color: 'rgba(244,244,243,0.7)',
+            color: '#ffffff',
             margin: '0 0 28px',
+            textShadow: '0 1px 12px rgba(0,0,0,0.65)',
             opacity: animate ? 1 : 0,
             animation: animate ? 'heroEyebrowIn 1.2s 0.3s cubic-bezier(0.22,1,0.36,1) both' : undefined,
           }}
@@ -121,13 +122,14 @@ export default function Hero({ active }: HeroProps) {
         <h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: 'clamp(58px, 11vw, 168px)',
             lineHeight: 0.92,
             letterSpacing: '-0.02em',
-            color: '#f4f4f3',
+            color: '#ffffff',
             margin: '0 0 32px',
             textTransform: 'uppercase',
+            textShadow: '0 2px 24px rgba(0,0,0,0.55)',
             opacity: animate ? 1 : 0,
             transform: animate ? 'translateY(0)' : 'translateY(40px)',
             animation: animate ? 'heroTextRise 1.1s 0.45s cubic-bezier(0.22,1,0.36,1) both' : undefined,
@@ -154,12 +156,13 @@ export default function Hero({ active }: HeroProps) {
         <p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 400,
+            fontWeight: 500,
             fontSize: 'clamp(20px, 2.6vw, 30px)',
             lineHeight: 1.45,
-            color: 'rgba(244,244,243,0.88)',
+            color: '#ffffff',
             maxWidth: 620,
             margin: '0 0 48px',
+            textShadow: '0 1px 16px rgba(0,0,0,0.7)',
             opacity: animate ? 1 : 0,
             transform: animate ? 'translateY(0)' : 'translateY(24px)',
             animation: animate ? 'heroTextRise 1s 0.7s cubic-bezier(0.22,1,0.36,1) both' : undefined,
@@ -210,9 +213,10 @@ export default function Hero({ active }: HeroProps) {
             fontSize: 9,
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
-            color: 'rgba(244,244,243,0.6)',
+            color: '#ffffff',
             writingMode: 'vertical-rl',
             transform: 'rotate(180deg)',
+            textShadow: '0 1px 10px rgba(0,0,0,0.6)',
           }}
         >
           Scroll

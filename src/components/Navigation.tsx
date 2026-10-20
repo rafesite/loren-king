@@ -43,29 +43,14 @@ export default function Navigation() {
             padding: '22px clamp(24px, 5vw, 56px)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
+            gap: 'clamp(24px, 4vw, 48px)',
           }}
         >
-          {/* Wordmark */}
-          <a
-            href="#top"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: 'italic',
-              fontWeight: 500,
-              fontSize: 22,
-              color: '#f4f4f3',
-              letterSpacing: '0.04em',
-              textDecoration: 'none',
-            }}
-          >
-            Loren King
-          </a>
-
           {/* Desktop nav */}
           <nav
             className="desktop-nav"
-            style={{ display: 'flex', alignItems: 'center', gap: '38px' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '38px', marginRight: 'auto' }}
           >
             {NAV_LINKS.map((l) => (
               <a key={l.label} href={l.href} className="nav-link" style={{ textDecoration: 'none' }}>
